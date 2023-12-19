@@ -30,7 +30,9 @@
               "src/assets/assetsTwo/css/bootstrap.min.css",
               "src/assets/assetsTwo/css/all.min.css",
               "src/assets/assetsTwo/css/style.css",
-              "src/assets/Dashboard/css/styles.min.css"
+              "src/assets/Dashboard/css/styles.min.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-spinner/animations/ball-scale-multiple.css" 
             ],
             "scripts": [
               "src/assets/assetsTwo/js/jquery-3.2.1.min.js",

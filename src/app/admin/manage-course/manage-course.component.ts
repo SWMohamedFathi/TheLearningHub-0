@@ -1,6 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HomeService } from 'src/app/Services/home.service';
+import { CreateCourseComponent } from '../create-course/create-course.component';
+
 
 @Component({
   selector: 'app-manage-course',
@@ -30,7 +32,7 @@ export class ManageCourseComponent implements OnInit {
     
   }
   OpenCreateDialog(){
-      this.dialog.open()
+      this.dialog.open(CreateCourseComponent)
   }
  
 }

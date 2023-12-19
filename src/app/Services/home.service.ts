@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -9,10 +11,10 @@ export class HomeService {
   message :string = 'This message from Home Service !!'; 
   numberOfActiveCourse = new BehaviorSubject(0); //
   courses:any=[{}];
-  constructor(private http :HttpClient) { }
+  constructor(private http :HttpClient,private toastr:ToastrService, private spinner:NgxSpinnerService) { }
   user:string ='dana@gmail.com'; 
   GetAllCourses(){
-    this.http.get('https://localhost:5000/api/Course').subscribe((resp)=>{
+    this.http.get('https://localhost:7234/api/Course/GetAllCourse').subscribe((resp)=>{
       this.courses = resp;
       localStorage.setItem('username', this.user);
       localStorage.getItem('username');
@@ -26,10 +28,25 @@ export class HomeService {
 
   DeleteCourse(id:number){
       debugger;
-    this.http.delete('https://localhost:5000/api/Course/delete/'+id).subscribe((resp)=>{
-      alert('Deleted')
+      this.spinner.show;
+    this.http.delete('https://localhost:7234/api/Course/DeleteCourse/'+id).subscribe((resp)=>{
+      this.toastr.success('Deleted')
     },err=>{
-      alert('something want wrong !!');
+    this.toastr.error
+    this.spinner.hide;
+
     })
+  }
+
+  CreateCourse(body:any){
+    debugger
+    this.http.post('https://localhost:7234/api/Course/CreateCourse',body).subscribe((resp) =>{
+      alert('Created')
+
+    },
+    err=>
+    alert('something want wrong'))
+  window.location.reload();
+
   }
 }
