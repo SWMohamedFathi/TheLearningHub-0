@@ -42,7 +42,7 @@
               <!-- <td>{{course.price}}</td> -->
 
         <td>
-                  <button type="button" class="btn btn-primary m-1">Update</button>
+                  <button type="button" class="btn btn-primary m-1" (click)="openUpdateDailog(obj)">Update</button>
 
                   <button type="button" (click)="DeleteCourse(obj.courseid)" class="btn btn-danger m-1">Delete</button>
               </td>
@@ -62,3 +62,52 @@
   <button type="button" mat-button mat-dialog-close="0">No</button>
 </div>
  </ng-template>
+
+ <ng-template  #callUpdateDialog>
+   <h2 mat-dialog-title>Update Course </h2>
+ <mat-dialog-content class="mat-typography">
+     <form class="example-form" [formGroup]="updateForm">
+         <mat-form-field class="example-full-width">
+           <mat-label>Course Name</mat-label>
+           <input type="text" matInput formControlName="coursename" [(ngModel)]="pData.coursename">
+           <mat-error *ngIf="updateForm.controls['coursename'].hasError('required')">
+             Course Name is <strong>required</strong>
+           </mat-error>
+         </mat-form-field>
+    
+    
+         <mat-form-field class="example-full-width">
+             <mat-label>Price</mat-label>
+             <input type="number" matInput formControlName="price" [(ngModel)]="pData.price">
+             <mat-error *ngIf="updateForm.controls['price'].hasError('required')">
+              Price is <strong>required</strong>
+             </mat-error>
+           </mat-form-field>
+    
+           <mat-form-field class="example-full-width">
+             <mat-label>Start Date</mat-label>
+             <input type="date" matInput formControlName="startDate" [(ngModel)]="pData.startDate">
+             <mat-error *ngIf="updateForm.controls['startDate'].hasError('required')">
+                 Start date is <strong>required</strong>
+             </mat-error>
+           </mat-form-field>
+    
+           <mat-form-field class="example-full-width">
+             <mat-label>End Date</mat-label>
+             <input type="date" matInput formControlName="endDate" [(ngModel)]="pData.endDate">
+             <mat-error *ngIf="updateForm.controls['endDate'].hasError('required')">
+                 End date is <strong>required</strong>
+             </mat-error>
+           </mat-form-field>
+  
+       </form>
+ </mat-dialog-content>
+ <mat-dialog-actions align="end">
+   <button mat-button mat-dialog-close>Cancel</button>
+   <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="UpdateCourse()">update</button>
+ </mat-dialog-actions>
+  
+  
+  
+  
+  </ng-template>
