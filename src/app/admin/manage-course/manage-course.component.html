@@ -10,6 +10,9 @@
           <thead class="text-dark fs-4">
             <tr>
               <th class="border-bottom-0">
+                <h4 class="fw-semibold mb-0">categoryname</h4>
+              </th>
+              <th class="border-bottom-0">
                 <h4 class="fw-semibold mb-0">Id</h4>
               </th>
               <th class="border-bottom-0">
@@ -33,20 +36,23 @@
           </thead>
         
           <tbody>
-            <tr *ngFor="let obj of home.courses">
+            <ng-container *ngFor="let obj of home.cat_Courses">
+            <tr *ngFor="let course of obj.Courses">
 
-              <td>{{obj.courseid}}</td>
-              <td>{{obj.coursename}}</td> 
-              <td>{{obj.startDate}}</td>
-              <td>{{obj.endDate}}</td>
+              <td>{{obj.categoryname}</td>
+              <td>{{course.coursename}}</td> 
+              <td>{{course.startDate}}</td>
+              <td>{{course.endDate}}</td>
               <!-- <td>{{course.price}}</td> -->
-
+              <td></td>
         <td>
                   <button type="button" class="btn btn-primary m-1" (click)="openUpdateDailog(obj)">Update</button>
 
                   <button type="button" (click)="DeleteCourse(obj.courseid)" class="btn btn-danger m-1">Delete</button>
               </td>
             </tr>   
+      </ng-container>
+
           </tbody>
         </table>
       </div>

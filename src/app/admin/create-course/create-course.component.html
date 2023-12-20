@@ -33,7 +33,9 @@
                 End date is <strong>required</strong>
             </mat-error>
           </mat-form-field>
- 
+          <div>
+            <input type="file" #file formControlName="imagename" (change)="UploadImage(file.files)">
+          </div>
       </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

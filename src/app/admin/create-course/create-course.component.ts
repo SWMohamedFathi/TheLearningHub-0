@@ -15,6 +15,8 @@ export class CreateCourseComponent {
     price:new FormControl('',Validators.required),
     startDate:new FormControl('',Validators.required),
     endDate:new FormControl('',Validators.required),
+    imagename:new FormControl()
+
 
   })
 
@@ -22,5 +24,16 @@ export class CreateCourseComponent {
   Save(){
     debugger
     this.home.CreateCourse(this.createCourse.value)
+  }
+
+  UploadImage(file:any){
+
+    if(file.length==0) return;
+  let fileToUpload = <File> file[0];
+  const formData = new FormData();
+  formData.append('file',fileToUpload,fileToUpload.name)
+  this.home.uploadAttachment(formData);
+
+
   }
 }

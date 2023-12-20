@@ -47,6 +47,7 @@ export class HomeService {
   }
 
   CreateCourse(body: any) {
+    body.imagename = this.display_image;
     this.http.post('https://localhost:7234/api/Course/CreateCourse', body).subscribe(
       (resp) => {
         this.toastr.success('Created');
@@ -72,4 +73,27 @@ export class HomeService {
       }
     );
   }
+  display_image:any;
+  uploadAttachment(file: FormData)
+{
+this.http.post('https://localhost:7234/api/uploadImage/',file).subscribe((resp:any)=>{
+  this.display_image = resp.imagename;
+},
+(err) => {
+  this.toastr.error('Error occurred');
+})
+}
+
+cat_Courses :any = [];
+GetAllCategories() {
+  this.http.get('https://localhost:7234/api/Course/GetAllCategories').subscribe(
+    (resp) => {
+      this.cat_Courses = resp;
+    },
+    (err) => { 
+      this.toastr.error('Error occurred');
+
+    }
+  );
+}
 }

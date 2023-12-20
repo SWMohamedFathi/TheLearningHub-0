@@ -18,6 +18,9 @@ export class ManageCourseComponent implements OnInit {
      price:new FormControl('',Validators.required),
      startDate:new FormControl('',Validators.required),
      endDate:new FormControl('',Validators.required),
+   
+
+     
   });
 
   constructor(public home: HomeService, public dialog: MatDialog) { }
@@ -28,6 +31,9 @@ export class ManageCourseComponent implements OnInit {
 
   fetchCourses() {
     this.home.GetAllCourses();
+    this.home.GetAllCategories();
+
+    
   }
 
   DeleteCourse(id: number) {
